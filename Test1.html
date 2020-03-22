@@ -10,6 +10,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- JQuery를 import 합니다 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -84,6 +88,69 @@
         }
     </style>
 
+    <script>
+
+        function isCellPhone(p) {
+
+            p = p.split('-').join('');
+
+            var regPhone = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+
+            return regPhone.test(p);
+
+        }
+
+
+
+
+
+        function order() {
+            let order_name = $('#order_name').val();
+            if (order_name == '') {
+                alert('이름을 입력하세요!');
+                return;
+            }
+            let order_count = $('#order_count option:selected').val();
+            if (order_count == '') {
+                alert('수량을 선택하세요!');
+                return;
+            }
+            let order_add = $('#order_add').val();
+            if (order_add == '') {
+                alert('주소를 입력하세요!');
+                return;
+            }
+            let order_tel = $('#order_tel').val();
+            if (order_tel == '') {
+
+                alert('전화번호를 입력하세요!');
+                return;
+            } else if (!isCellPhone(order_tel)) {
+                alert('010-0000-0000 형식에 맞게 입력하세요!');
+                return;
+            }
+
+            else {
+                alert('주문이 완료되었습니다.');
+                return;
+            }
+
+
+
+        }
+        
+        function make_card(name,count,address,phone) {
+        let temp_html = '<tr>\
+            <td>'+name+'</td>\
+            <td>'+count+'</td>\
+            <td>'+address+'</td>\
+            <td>'+phone+'</td>\
+          </tr>';
+        $('#orders-box').append(temp_html);
+      }
+
+    </script>
+
 </head>
 
 <body>
@@ -114,16 +181,17 @@
 
         <form>
             <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label">주문자 성함</label>
+                <label for="staticEmail" class="col-sm-2 col-form-label ">주문자 성함</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control  order-input" id="staticEmail" placeholder="주문자 성함">
+                    <input type="text" class="form-control order-input" id="order_name" aria-describedby="basic-addon3">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="exampleFormControlSelect1" style="margin-right : 125px;">수량</label>
                 <label>
-                    <select class="form-control order-input" id="exampleFormControlSelect1" placeholder="수량을 선택하세요">
+                    <select class="custom-select order-input" id="order_count">
+                        <option selected value=""> -------- 수량을 선택하세요 --------- </option>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -139,22 +207,41 @@
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">주소</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control  order-input" id="staticEmail" placeholder="주소">
+                    <input type="text" class="form-control  order-input" id="order_add" placeholder="주소">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">전화번호</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control order-input" id="inputPassword" placeholder="전화번호">
+                    <input type="text" class="form-control order-input" id="order_tel" placeholder="전화번호">
                 </div>
             </div>
         </form>
 
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button"
-                style="margin: auto; width: 400px; ">주문하기</a>
-        </p>
+        <div class="order">
+            <button onclick="order()" type="button" class="btn btn-primary">주문하기</button>
+        </div>
 
+        <div class="orders">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">이름</th>
+                        <th scope="col">수량</th>
+                        <th scope="col">주소</th>
+                        <th scope="col">전화번호</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-box">
+                    <tr>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 

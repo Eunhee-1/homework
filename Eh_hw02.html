@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- Webpage Title -->
+    <title>Hello, world!</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- JQuery를 import 합니다 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+    <!-- style -->
+    <style type="text/css">
+        * {
+            font-family: 'Stylish', sans-serif;
+        }
+
+        .wrap {
+
+            width: 900px;
+            margin: auto;
+        }
+
+        .comment {
+            color: blue;
+            font-weight: bold;
+        }
+
+        .form-post {
+            max-width: 500px;
+            padding: 2rem;
+            margin: 2rem auto;
+            border-color: #e9ecef;
+            border-radius: 0.3rem;
+            border: solid;
+            display: block;
+        }
+
+        .title {
+            height: 600px;
+            background-image: url('https://t1.daumcdn.net/cfile/tistory/997E2C395B988B3619');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-title {
+            font-size: 50px;
+            /* margin: 내 영역 밖에 공간주기 (시계방향으로 위부터)  padding: 영역 안에 공간주기 */
+            margin: 0 20px 0 0;
+
+        }
+
+        .order-title {
+            font-size: 50px;
+
+        }
+
+        .product-desc {
+            margin: 15px 0 0 0;
+            padding: 0 0 0 20px;
+        }
+
+        .order-input {
+            width: 400px;
+
+
+        }
+    </style>
+    <script>
+        let template =
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>;
+        function isCellPhone(p) {
+
+            p = p.split('-').join('');
+
+            var regPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})$/;
+
+            return regPhone.test(p);
+
+        }
+
+
+        function order() {
+            let order_name = $("#order_name").val();
+            if (order_name == '') {
+                alert('이름을 입력하세요!');
+                return;
+            }
+            let order_count = $("# order_count option:selected").val();
+            if (order_count == '') {
+                alert('수량을 선택하세요!');
+                return;
+            }
+            let order_add = $("#order_add").val();
+            if (order_add == '') {
+                alert('주소를 입력하세요!');
+                return;
+            }
+            let order_tel = $("#order_tel").val();
+            if (order_tel == '') {
+
+                alert('전화번호를 입력하세요!');
+                return;
+            } else if (!isCellPhone(order_tel)) {
+                alert('010-0000-0000 형식에 맞게 입력하세요!');
+                return;
+            }
+
+            else {
+                alert('주문이 완료되었습니다.');
+                return;
+            }
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="jumbotron title">
+
+        </div>
+        <div>
+            <!-- <h1 class="display-4">나홀로 링크 메모장</h1> -->
+            <p class="lead">
+                <label class="product-title ">
+                    아로마 향초
+                </label>
+                가격: 10000원 /개
+            </p>
+            <p>
+                <label class="product-desc ">
+                    캔들라이트 천연아로마향초는 친환경적으로 제작된 건강한 향초로 지친 기분을 전환시켜 줍니다.
+                    캔들라이트는 1840년 설립을 하여 높은 수준의 소비자 욕구를 만족시키고, 향기와 가정분위기를 위한 최고급 가치의 향초를 만들기 위해, 엄격한 품질관리와 생산과리를 하고 있답니다.
+                    캔들라이트는 세계적인 향초 산업의 리더로서 최고급의 향기와 독특한 색의 조합을 보유하고 있습니다.
+                </label>
+            </p>
+            <hr class="my-4">
+
+        </div>
+
+        <h1 class .order-title style="margin :0 0 30px 0;">주문하기</h1>
+
+        <form>
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">주문자 성함</label>
+                <div class="col-sm-10">
+                    <input type="text" id="order_name" class="form-control  order-input" placeholder="주문자 성함">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1" style="margin-right : 125px;">수량</label>
+                <label>
+                    <select class="form-control order-input" id="order_count" placeholder="수량을 선택하세요">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select> </label>
+
+
+
+            </div>
+        </form>
+        <form>
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">주소</label>
+                <div class="col-sm-10">
+                    <input type="text" id="order_add" class="form-control  order-input" placeholder="주소">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">전화번호</label>
+                <div class="col-sm-10">
+                    <input type="text" id="order_tel" class="form-control order-input" placeholder="전화번호">
+                </div>
+            </div>
+        </form>
+
+        <div class="order">
+            <button onclick="order()" type="button" class="btn btn-primary">주문하기</button>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">이름</th>
+                    <th scope="col">수량</th>
+                    <th scope="col">주소</th>
+                    <th scope="col">전화번호</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+    </div>
+</body>
+
+</html>
